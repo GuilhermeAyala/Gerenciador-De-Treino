@@ -1,0 +1,13 @@
+POST http://localhost:3000/exercicios
+Content-Type: application/json
+
+{
+    "nome": "Supino reto",
+    "quantidade_series": 4,
+    "quantidade_repeticao": 12,
+    "peso_carga": 20
+}
+
+###
+
+GET http://localhost:3000/exercicios
