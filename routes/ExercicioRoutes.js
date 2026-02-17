@@ -1,8 +1,9 @@
-const express = require("express");
+import express from 'express';
+import exercicioController from "../controllers/ExercicioController.js";
+
 const router = express.Router();
-const exercicioController = require("../controllers/ExercicioController");
 
-router.get("/exercicios", exercicioController.listarExercicios);
-router.post("/exercicios", exercicioController.adicionarExercicios);
+router.get("/", exercicioController.listarExercicios);
+router.post("/", exercicioController.adicionarExercicios);
 
-module.exports = router;
+export default router;

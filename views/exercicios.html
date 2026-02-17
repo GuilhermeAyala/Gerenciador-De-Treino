@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exercícios</title>
+</head>
+<body>
+  <h1>Lista de Exercícios</h1>
+  <div id="lista"></div>
+
+  <script>
+    // Buscar lista de exercícios
+    fetch("/api/exercicios")
+      .then(res => res.json())
+      .then(data => {
+        const div = document.getElementById("lista");
+        div.innerHTML = "<ul>" + data.map(e =>
+          `<li><strong>${e.nome}</strong> - Séries: ${e.quantidade_series}, Repetições: ${e.quantidade_repeticao}, Carga: ${e.peso_carga}kg</li>`
+        ).join("") + "</ul>";
+      });
+    
+  </script>
+</body>
+</html>
