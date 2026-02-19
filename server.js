@@ -1,11 +1,8 @@
-import { BancoDeExercicios } from './exercicio.js';
 import express from 'express';
 import exercicioRoutes from './routes/ExercicioRoutes.js';
 
 const app = express()
 const port = 3000
-
-const database = new BancoDeExercicios();
 
 app.use(express.json());
 
