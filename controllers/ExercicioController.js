@@ -5,12 +5,12 @@ function listarExercicios(req, res) {
 }
 
 function adicionarExercicios(req, res) {
-    const {nome, quantidade_series, quantidade_repeticao, peso_carga} = req.body;
-    if(!nome || !quantidade_series || !quantidade_repeticao || !peso_carga){
+    const {nome, grupo_muscular, quantidade_series, quantidade_repeticao, peso_carga} = req.body;
+    if(!nome || !grupo_muscular ||!quantidade_series || !quantidade_repeticao || !peso_carga){
         return res.status(400).json({message: "Todos os campos são obrigatórios"})
     }
 
-    if(typeof nome !== "string"){
+    if(typeof nome !== "string" || typeof grupo_muscular !== "string"){
         return res.status(400).json({error: "O exercicio precisa ser uma string"})
     }
 

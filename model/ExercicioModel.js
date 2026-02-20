@@ -1,8 +1,9 @@
 let exercicios = [];
 
 class Exercicio {
-    constructor(nome, quantidade_series, quantidade_repeticao, peso_carga){
+    constructor(nome, grupo_muscular, quantidade_series, quantidade_repeticao, peso_carga){
         this.nome = nome;
+        this.grupo_muscular = grupo_muscular;
         this.quantidade_series = quantidade_series;
         this.quantidade_repeticao = quantidade_repeticao;
         this.peso_carga = peso_carga;
