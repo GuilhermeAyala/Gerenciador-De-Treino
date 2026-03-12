@@ -17,6 +17,12 @@ class Exercicio {
         exercicios.push(exercicio);
     }
 
+    static filtrarPorGrupoMuscular(grupo_muscular){
+        return exercicios.filter(exercicio => 
+            exercicio.grupo_muscular.toLowerCase() === grupo_muscular.toLowerCase()
+        );
+    }
+
 }
 
 export default Exercicio;
