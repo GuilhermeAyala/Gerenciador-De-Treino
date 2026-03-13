@@ -27,4 +27,35 @@ function adicionarExercicios(req, res) {
     res.status(201).json({message: "Exercicio cadastrado com sucesso"});
 };
 
-export default {listarExercicios, adicionarExercicios};
+function editarExercicio(){
+    
+}
+
+function calculoVolumeRepeticao(){
+    volume = quantidade_series * quantidade_repeticao * peso_carga;
+    return volume;
+}
+
+function volumeSemanal(){
+    volumeSemanal = quantidade_series * quantidade_repeticao;
+    if(volumeSemanal < 10){
+        volumeSemanal = "baixa hipertrofia"
+    }
+    else if(volumeSemanal >= 10 && volumeSemanal <= 20){
+        volumeSemanal = "hipertrofia eficaz"
+    }
+    else{
+        volumeSemanal = "Fadiga muscular"
+    }
+}
+
+function filtrarExercicios(req, res){
+    const { grupo_muscular } = req.params;
+    const resultado = Exericicio.filtrarPorGrupoMuscular(grupo_muscular);
+
+    if(resultado.length === 0){
+        return res.status(404).json({message: "Nenhum exericio encontrado para esse grupo muscular"})
+    }
+}
+
+export default {listarExercicios, adicionarExercicios, filtrarExercicios};
