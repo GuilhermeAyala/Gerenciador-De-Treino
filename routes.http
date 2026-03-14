@@ -16,17 +16,17 @@ GET http://localhost:3000/exercicios
 ###
 
 POST http://localhost:3000/usuarios
-Content-Type:  application/json
+Content-Type: application/json
 
 {
     "id": 0,
     "nome": "Pedro",
     "email": "pedro.teste@gmail.com",
-    "senha": "12345"
+    "senha": "Teste@123456789"
 }
 
 ###
-PUT http://localhost:3000/usuarios
+PUT http://localhost:3000/usuarios/0
 Content-Type: application/json
 
 {

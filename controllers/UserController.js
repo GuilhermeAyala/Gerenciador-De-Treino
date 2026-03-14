@@ -2,6 +2,25 @@ import Usuario from "../model/UserModel.js"
 
 function criarUsuario(req, res){
     const {id, nome, email, senha} = req.body;
+    const caracterEspecial = ['!', '@', '#', '$', '%', '&','*', '?'];
+    const hasUppercase = /[A-Z]/.test(senha);
+    const hasSpecialChar = senha.split("").some(char => caracterEspecial.includes(char));
+
+    if(typeof id !== "number" || id < 0){
+        return res.status(400).json({message: "id deve ser um numero e maior que zero"})
+    }
+    if(typeof nome !== "string" || typeof email !== "string" || typeof senha !== "string"){
+        return res.status(400).json({message: "Nome, email e senha, só podem ser strings"})
+    }
+    if(id == null || nome == null || email == null || senha == null){
+        return res.status(400).json({message: "Nenhum atributo pode ser vazio"})
+    }
+    if(!email.includes('@')){
+        return res.status(400).json({message: "Formato incorreto do email, deve conter @"})
+    }
+    if(senha.length < 10 || !hasSpecialChar || !hasUppercase){
+        return res.status(400).json({message: "Senha deve ter mais de 10 caracteres, pelo menos um caracter especial e uma letra maiuscula"});
+    }
 
     const usuario = new Usuario(
         id,

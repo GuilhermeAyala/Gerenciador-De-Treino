@@ -5,9 +5,13 @@ function listarExercicios(req, res) {
 }
 
 function adicionarExercicios(req, res) {
-    const {nome, grupo_muscular, quantidade_series, quantidade_repeticao, peso_carga} = req.body;
-    if(!nome || !grupo_muscular ||!quantidade_series || !quantidade_repeticao || !peso_carga){
+    const {id, nome, grupo_muscular, quantidade_series, quantidade_repeticao, peso_carga} = req.body;
+    if(!id || !nome || !grupo_muscular ||!quantidade_series || !quantidade_repeticao || !peso_carga){
         return res.status(400).json({message: "Todos os campos são obrigatórios"})
+    }
+
+    if(typeof id !== "number" || id < 0){
+        return res.status(400).json({message: "id tem que ser um número e positivo"});
     }
 
     if(typeof nome !== "string" || typeof grupo_muscular !== "string"){
