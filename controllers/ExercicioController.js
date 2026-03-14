@@ -6,12 +6,8 @@ function listarExercicios(req, res) {
 
 function adicionarExercicios(req, res) {
     const {id, nome, grupo_muscular, quantidade_series, quantidade_repeticao, peso_carga} = req.body;
-    if(!id || !nome || !grupo_muscular ||!quantidade_series || !quantidade_repeticao || !peso_carga){
+    if(!nome || !grupo_muscular ||!quantidade_series || !quantidade_repeticao || !peso_carga){
         return res.status(400).json({message: "Todos os campos são obrigatórios"})
-    }
-
-    if(typeof id !== "number" || id < 0){
-        return res.status(400).json({message: "id tem que ser um número e positivo"});
     }
 
     if(typeof nome !== "string" || typeof grupo_muscular !== "string"){
@@ -26,20 +22,50 @@ function adicionarExercicios(req, res) {
         return res.status(400).json({error: "Series, repetições ou cargas, não podem ser nulas ou negativas"})
     }
 
-    const novo = new Exercicio(nome, quantidade_series, quantidade_repeticao, peso_carga);
+    const novo = new Exercicio(nome, grupo_muscular, quantidade_series, quantidade_repeticao, peso_carga);
     Exercicio.adicionar(novo);
     res.status(201).json({message: "Exercicio cadastrado com sucesso"});
 };
 
-function editarExercicio(){}//metodo put
+function editarExercicio(req, res){//metodo put
+    const { id } = req.params;
+    const {nome, grupo_muscular, quantidade_series, quantidade_repeticao, peso_carga} = req.body;
 
-function calculoVolumeRepeticao(){
-    volume = quantidade_series * quantidade_repeticao * peso_carga;
+    const atualizado = Exercicio.editar(id, nome, grupo_muscular, quantidade_series, quantidade_repeticao, peso_carga);
+
+    if(!atualizado){
+        return res.status(404).json({message: "Exercicio não encontrado"})
+    }
+
+    res.json(atualizado);
+}
+
+function filtrarExercicios(req, res){
+    const { grupo_muscular } = req.params;
+    const resultado = Exericicio.filtrarPorGrupoMuscular(grupo_muscular);
+
+    if(resultado.length === 0){
+        return res.status(404).json({message: "Nenhum exericio encontrado para esse grupo muscular"})
+    }
+
+    res.json(resultado);
+}
+
+function excluirExercicio(req, res){
+    const { id } = req.params;
+
+    Exercicio.excluir(id);
+    return res.status(201).json({message: "Exercício deletado"});
+}
+
+
+function calculoVolumeRepeticao(exercicio){
+    volume = exercicio.quantidade_series * exercicio.quantidade_repeticao * exercicio.peso_carga;
     return volume;
 }
 
-function volumeSemanal(){
-    volumeSemanal = quantidade_series * quantidade_repeticao;
+function volumeSemanal(exercicio){
+    volumeSemanal = exercicio.quantidade_series * exercicio.quantidade_repeticao;
     if(volumeSemanal < 10){
         volumeSemanal = "baixa hipertrofia"
     }
@@ -51,13 +77,4 @@ function volumeSemanal(){
     }
 }
 
-function filtrarExercicios(req, res){
-    const { grupo_muscular } = req.params;
-    const resultado = Exericicio.filtrarPorGrupoMuscular(grupo_muscular);
-
-    if(resultado.length === 0){
-        return res.status(404).json({message: "Nenhum exericio encontrado para esse grupo muscular"})
-    }
-}
-
-export default {listarExercicios, adicionarExercicios, filtrarExercicios};
+export default {listarExercicios, adicionarExercicios, editarExercicio, filtrarExercicios, excluirExercicio};

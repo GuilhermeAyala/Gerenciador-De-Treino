@@ -2,11 +2,26 @@ POST http://localhost:3000/exercicios
 Content-Type: application/json
 
 {
+    "id": 0,
     "nome": "Supino reto",
     "grupo_muscular": "Peito",
     "quantidade_series": 4,
     "quantidade_repeticao": 10,
     "peso_carga": 20
+}
+
+###
+
+PUT http://localhost:3000/exercicios/0
+Content-Type: application/json
+
+{
+    "id": 1,
+    "nome": "Supino reto",
+    "grupo_muscular": "Peito",
+    "quantidade_series": 4,
+    "quantidade_repeticao": 5,
+    "peso_carga": 5
 }
 
 ###
@@ -31,9 +46,9 @@ Content-Type: application/json
 
 {
     "id": 0,
-    "nome": "Lucas",
+    "nome": "Pedro",
     "email": "pedro.teste@gmail.com",
-    "senha": "12345"
+    "senha": "sgdgdsbsdsddgs!5445342"
 }
 ###
 GET http://localhost:3000/usuarios

@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.get("/", exercicioController.listarExercicios);
 router.post("/", exercicioController.adicionarExercicios);
+router.put("/:id", exercicioController.editarExercicio);
+router.delete("/:id", exercicioController.excluirExercicio);
 
 router.get("/grupo/:grupo_muscular", exercicioController.filtrarExercicios);
 

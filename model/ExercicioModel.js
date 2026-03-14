@@ -1,8 +1,9 @@
 let exercicios = [];
+let proximoId = 0;
 
 class Exercicio {
-    constructor(id, nome, grupo_muscular, quantidade_series, quantidade_repeticao, peso_carga){
-        this.id = id;
+    constructor(nome, grupo_muscular, quantidade_series, quantidade_repeticao, peso_carga){
+        this.id = proximoId++;
         this.nome = nome;
         this.grupo_muscular = grupo_muscular;
         this.quantidade_series = quantidade_series;
@@ -18,10 +19,9 @@ class Exercicio {
         exercicios.push(exercicio);
     }
 
-    static editar(nome, grupo_muscular, quantidade_series, quantidade_repeticao, peso_carga){
-        const {nome, grupo_muscular, quantidade_series, quantidade_repeticao, peso_carga} = req.body;
+    static editar(id, nome, grupo_muscular, quantidade_series, quantidade_repeticao, peso_carga){
 
-        const index = exercicios.findIndex(u => String(u.id) === String(id));
+        const index = exercicios.findIndex(e => String(e.id) === String(id));
         if(index === -1){ return null};
 
         exercicios[index] = {...exercicios[index], nome, grupo_muscular, quantidade_series, quantidade_repeticao, peso_carga};
@@ -32,6 +32,10 @@ class Exercicio {
         return exercicios.filter(exercicio => 
             exercicio.grupo_muscular.toLowerCase() === grupo_muscular.toLowerCase()
         );
+    }
+
+    static excluir(id){
+        exercicios = exercicios.filter(exercicio => String(exercicio.id) !== String(id));
     }
 
 }
