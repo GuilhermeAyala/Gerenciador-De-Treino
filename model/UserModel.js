@@ -1,8 +1,20 @@
+let usuarios = [];
+
 class Usuario {
     constructor(id, nome, email, senha){
-        id = this.id;
-        nome = this.nome;
-        email = this.email;
-        senha = this.senha;
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+    }
+
+    static listar(){
+        return usuarios;
+    }
+
+    static adicionar(usuario){
+        usuarios.push(usuario);
     }
 }
+
+export default Usuario;

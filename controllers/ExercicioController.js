@@ -27,9 +27,7 @@ function adicionarExercicios(req, res) {
     res.status(201).json({message: "Exercicio cadastrado com sucesso"});
 };
 
-function editarExercicio(){
-    
-}
+function editarExercicio(){}//metodo put
 
 function calculoVolumeRepeticao(){
     volume = quantidade_series * quantidade_repeticao * peso_carga;
