@@ -24,15 +24,17 @@ function listarUsuarios(req, res) {
     res.json(listaUsuarios);
 }
 
-function editarUsuario(){
-    const {id, nome, email, senha} = req.body;
-    const usuario = Usuario.find(usuario => Usuario.id === id)
-    if(!usuario){
+function editarUsuario(req, res){
+    const { id } = req.params;
+    const {nome, email, senha} = req.body;
+
+    const atualizado = Usuario.editar(id, nome, email, senha);
+
+    if(!atualizado){
         return res.status(404).json({message: "Usuário não encontrado"})
     }
 
-    Usuario.update({nome, email, senha})
-    return res.json(usuario);
+    return res.json(atualizado);
 
 }
 

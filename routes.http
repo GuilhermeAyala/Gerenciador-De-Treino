@@ -26,5 +26,14 @@ Content-Type:  application/json
 }
 
 ###
+PUT http://localhost:3000/usuarios
+Content-Type: application/json
 
+{
+    "id": 0,
+    "nome": "Lucas",
+    "email": "pedro.teste@gmail.com",
+    "senha": "12345"
+}
+###
 GET http://localhost:3000/usuarios

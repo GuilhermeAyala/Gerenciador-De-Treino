@@ -15,6 +15,14 @@ class Usuario {
     static adicionar(usuario){
         usuarios.push(usuario);
     }
+
+    static editar(id, nome, email, senha){
+        const index = usuarios.findIndex(u => String(u.id) === String(id));
+        if(index === -1){ return null};
+
+        usuarios[index] = {...usuarios[index], nome, email, senha};
+        return usuarios[index];
+    }
 }
 
 export default Usuario;
