@@ -57,6 +57,15 @@ function editarUsuario(req, res){
 
 }
 
-function excluirUsuario(){}
+function deletarUsuario(req, res){
+    const { id } = req.params;
+    const deletado = Usuario.deletar(id);
 
-export default {criarUsuario, listarUsuarios, editarUsuario, excluirUsuario};
+    if(!deletado){
+        return res.status(404).json({message: "é necessário criar um usuário para que haja exclusão"})
+    }
+
+    return res.status(201).json({message: "Usuário deletado"});
+}
+
+export default {criarUsuario, listarUsuarios, editarUsuario, deletarUsuario};

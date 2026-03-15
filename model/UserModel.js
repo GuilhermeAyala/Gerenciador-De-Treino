@@ -23,6 +23,17 @@ class Usuario {
         usuarios[index] = {...usuarios[index], nome, email, senha};
         return usuarios[index];
     }
+
+    static deletar(id){
+        const index = usuarios.findIndex(u => String(u.id) === String(id));
+        if(index === -1){
+            return null;
+        } 
+
+        usuarios.splice(index, 1);
+        return true;
+    }   
+
 }
 
 export default Usuario;
