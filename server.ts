@@ -1,6 +1,6 @@
 import express from 'express';
 import exercicioRoutes from './routes/ExercicioRoutes.js';
-import userRoutes from './routes/UserRoutes.js';
+//import userRoutes from './routes/UserRoutes.js';
 
 const app = express()
 const port = 3000
@@ -16,7 +16,7 @@ app.get('/home', (req, res) => {
 })
 
 app.use('/exercicios', exercicioRoutes);
-app.use('/usuarios', userRoutes);
+//app.use('/usuarios', userRoutes);
 
 app.listen(port, () => {
     console.log(`Acessando a porta ${port}`);

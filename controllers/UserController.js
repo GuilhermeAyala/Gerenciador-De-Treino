@@ -1,4 +1,4 @@
-import Usuario from "../model/UserModel.js"
+import Usuario from "../service/UserModel.js"
 
 function criarUsuario(req, res){
     const {id, nome, email, senha} = req.body;
